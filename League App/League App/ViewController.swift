@@ -13,9 +13,5 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
-    
-    var player1 = Player(givenName: "Jack", givenAge: 21, givenSkill: 4.0);
-
-
 }
 
