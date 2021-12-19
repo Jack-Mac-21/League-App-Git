@@ -17,6 +17,7 @@
 		447686B9276EB44B004A50E1 /* League_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447686B8276EB44B004A50E1 /* League_AppUITests.swift */; };
 		447686BB276EB44B004A50E1 /* League_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447686BA276EB44B004A50E1 /* League_AppUITestsLaunchTests.swift */; };
 		447686C8276EB4BC004A50E1 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447686C7276EB4BC004A50E1 /* Player.swift */; };
+		447686CA276ED1FD004A50E1 /* League.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447686C9276ED1FD004A50E1 /* League.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		447686B8276EB44B004A50E1 /* League_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = League_AppUITests.swift; sourceTree = "<group>"; };
 		447686BA276EB44B004A50E1 /* League_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = League_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		447686C7276EB4BC004A50E1 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		447686C9276ED1FD004A50E1 /* League.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = League.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				447686C7276EB4BC004A50E1 /* Player.swift */,
+				447686C9276ED1FD004A50E1 /* League.swift */,
 				44768697276EB449004A50E1 /* AppDelegate.swift */,
 				44768699276EB449004A50E1 /* SceneDelegate.swift */,
 				4476869B276EB449004A50E1 /* ViewController.swift */,
@@ -264,6 +267,7 @@
 				447686C8276EB4BC004A50E1 /* Player.swift in Sources */,
 				4476869C276EB449004A50E1 /* ViewController.swift in Sources */,
 				44768698276EB449004A50E1 /* AppDelegate.swift in Sources */,
+				447686CA276ED1FD004A50E1 /* League.swift in Sources */,
 				4476869A276EB449004A50E1 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
