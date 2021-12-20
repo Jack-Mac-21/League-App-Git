@@ -3,51 +3,49 @@
 //  League App
 //
 //  Created by JackMac on 12/19/21.
-//
+// The view controller for the TableView odf players
 
 import UIKit
 
 class PlayerListScreen: UIViewController {
     
-    var Players: [Player] = []
+    @IBOutlet weak var NameInput: UITextField!
+    @IBOutlet weak var SkillInput: UITextField!
+    @IBOutlet weak var AgeInput: UITextField!
     @IBOutlet weak var TableView: UITableView!
+    
+    var Players: [Player] = []
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        Players = createArray()
         
         TableView.delegate = self
         TableView.dataSource = self
 
     }
     
-    func createArray() -> [Player]{
-        var tempPlayers: [Player] = [];
+    @IBAction func AddPlayer(_ sender: Any) {
+        let player = Player(givenName: NameInput.text ?? "no_name", givenAge: Int(AgeInput.text ?? "0") ?? 0, givenSkill: Double(SkillInput.text ?? "0.0") ?? 0.0) //Takes input fields to create a new player and adds to the array
+        self.Players.append(player)
         
-        let player1 = Player(givenName: "Maddie", givenAge: 27, givenSkill: 3.0)
-        let player2 = Player(givenName: "Jack", givenAge: 21, givenSkill: 4.5)
-        let player3 = Player(givenName: "John", givenAge: 70, givenSkill: 3.5)
-        let player4 = Player(givenName: "Joanne", givenAge: 55, givenSkill: 3.5)
-        
-        tempPlayers = [player1, player2, player3, player4]
-        
-        return tempPlayers
+        TableView.beginUpdates()
+        TableView.insertRows(at: [IndexPath(row: self.Players.count - 1, section: 0)], with: .automatic) /// animate the insertion
+        TableView.endUpdates()
     }
 }
 
-extension PlayerListScreen: UITableViewDataSource, UITableViewDelegate{
+extension PlayerListScreen: UITableViewDataSource, UITableViewDelegate{ //Deciding the amount of rows
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Players.count
+        return self.Players.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let player = Players[indexPath.row]
+        let player = self.Players[indexPath.row]
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "PlayerCell") as! PlayerCell
         
-        cell.setPlayer(player: player)
+        cell.setPlayer(player: player) //Specifiying the parameters in the cell
         
         return cell
     }

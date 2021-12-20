@@ -9,6 +9,7 @@ import Foundation
 
 class League{
     var Players = [String: Player]();
+    var Title = "New League"; //title for a league 
     
     func addPlayer(player: Player){
         self.Players[player.Name] = player;
