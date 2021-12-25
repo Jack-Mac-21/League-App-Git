@@ -19,7 +19,6 @@ class PlayerListScreen: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         TableView.delegate = self
         TableView.dataSource = self
 
