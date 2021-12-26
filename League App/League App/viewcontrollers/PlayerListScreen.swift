@@ -16,7 +16,8 @@ class PlayerListScreen: UIViewController {
     @IBOutlet weak var TableView: UITableView!
     
     var _Players: [Player] = []
-    var _League: League?
+    var _League: League! //Forcing this to be a league, could lead to a crash
+    var _Delegate: DataDelegate?
     
     //Runs right before the viewcontroller appears
     //Passes in the given league date to display at the top
@@ -30,6 +31,7 @@ class PlayerListScreen: UIViewController {
         super.viewDidLoad()
         TableView.delegate = self
         TableView.dataSource = self
+        self._Players = self._League.PlayerList
 
     }
     
@@ -37,6 +39,10 @@ class PlayerListScreen: UIViewController {
     @IBAction func AddPlayer(_ sender: Any) {
         let player = Player(givenName: NameInput.text ?? "no_name", givenAge: Int(AgeInput.text ?? "0") ?? 0, givenSkill: Double(SkillInput.text ?? "0.0") ?? 0.0) //Takes input fields to create a new player and adds to the array
         self._Players.append(player)
+        self._League?.PlayerList.append(player)
+        self._League?.Players[player.Name] = player
+        
+        _Delegate?.updateLeague(league: self._League)
         
         TableView.beginUpdates()
         TableView.insertRows(at: [IndexPath(row: self._Players.count - 1, section: 0)], with: .automatic) /// animate the insertion

@@ -7,12 +7,21 @@
 
 import UIKit
 
-class LeagueListScreen: UIViewController {
+protocol DataDelegate{
+    func updateLeague(league: League)
+}
+
+class LeagueListScreen: UIViewController, DataDelegate {
     @IBOutlet weak var AddLeagueButton: UIButton!
     @IBOutlet weak var LeagueNameInput: UITextField!
     @IBOutlet weak var LeagueTableView: UITableView!
     
     var leagues: [League] = []
+    
+    //Protocol Implementation to pass data back to this screen
+    func updateLeague(league: League){
+        AddLeagueFromPlayerList(givenLeague: league)
+    }
 
 
     override func viewDidLoad() {
@@ -22,6 +31,7 @@ class LeagueListScreen: UIViewController {
         
         // Do any additional setup after loading the view.
     }
+    
     @IBAction func AddLeague(_ sender: Any) {
         let tempLeague = League(givenTitle: LeagueNameInput.text ?? "error")
         leagues.append(tempLeague)
@@ -31,8 +41,16 @@ class LeagueListScreen: UIViewController {
         LeagueTableView.endUpdates()
         
         LeagueNameInput.text = ""
+    }
+    
+    //Function testing if we are adding player from the player list screen
+    //Need to update to update the correspounding league with the new player
+    func AddLeagueFromPlayerList(givenLeague: League){
+        leagues.append(givenLeague)
         
-        
+        LeagueTableView.beginUpdates()
+        LeagueTableView.insertRows(at: [IndexPath(row: self.leagues.count - 1, section: 0)], with: .automatic) /// animate the insertion
+        LeagueTableView.endUpdates()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -41,6 +59,7 @@ class LeagueListScreen: UIViewController {
             let destVC = segue.destination as! PlayerListScreen
             
             destVC._League = self.leagues[indexPath.row]
+            destVC._Delegate = self
         }
     }
     

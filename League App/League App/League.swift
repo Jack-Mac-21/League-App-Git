@@ -9,6 +9,7 @@ import Foundation
 
 class League{
     var Players = [String: Player]();
+    var PlayerList: [Player] = []
     var Title = "New League"; //title for a league
     
     init(givenTitle: String){
