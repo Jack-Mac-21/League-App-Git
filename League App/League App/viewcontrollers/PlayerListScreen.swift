@@ -37,12 +37,12 @@ class PlayerListScreen: UIViewController {
     
     //When the user presses add player
     @IBAction func AddPlayer(_ sender: Any) {
-        let player = Player(givenName: NameInput.text ?? "no_name", givenAge: Int(AgeInput.text ?? "0") ?? 0, givenSkill: Double(SkillInput.text ?? "0.0") ?? 0.0) //Takes input fields to create a new player and adds to the array
-        self._Players.append(player)
-        self._League?.PlayerList.append(player)
-        self._League?.Players[player.Name] = player
+        let _player = Player(givenName: NameInput.text ?? "no_name", givenAge: Int(AgeInput.text ?? "0") ?? 0, givenSkill: Double(SkillInput.text ?? "0.0") ?? 0.0) //Takes input fields to create a new player and adds to the array
+        self._Players.append(_player)
+        self._League?.PlayerList.append(_player)
+        self._League?.PlayersDict[_player.Name] = _player
         
-        _Delegate?.updateLeague(league: self._League)
+        _Delegate?.updateLeague(league: self._League, player: _player)
         
         TableView.beginUpdates()
         TableView.insertRows(at: [IndexPath(row: self._Players.count - 1, section: 0)], with: .automatic) /// animate the insertion

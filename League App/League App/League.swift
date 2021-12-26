@@ -8,7 +8,7 @@
 import Foundation
 
 class League{
-    var Players = [String: Player]();
+    var PlayersDict = [String: Player]();
     var PlayerList: [Player] = []
     var Title = "New League"; //title for a league
     
@@ -17,7 +17,7 @@ class League{
     }
     
     func addPlayer(player: Player){
-        self.Players[player.Name] = player;
+        self.PlayersDict[player.Name] = player;
     }
     
     func setPlayer(players: [Player]){
@@ -25,6 +25,6 @@ class League{
         for player in players {
             tempPlayers[player.Name] = player
         }
-        self.Players = tempPlayers
+        self.PlayersDict = tempPlayers
     }
 }

@@ -15,7 +15,7 @@ class LeagueCell: UITableViewCell {
     
     func SetLeague(league: League){
         Label.text = league.Title
-        Count.text = league.Players.count.description
+        Count.text = league.PlayersDict.count.description
         self._League = league
     }
 
