@@ -50,4 +50,8 @@ extension LeagueListScreen: UITableViewDataSource, UITableViewDelegate{ //Decidi
         
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        <#code#>
+    }
 }

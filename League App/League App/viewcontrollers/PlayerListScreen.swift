@@ -14,7 +14,8 @@ class PlayerListScreen: UIViewController {
     @IBOutlet weak var AgeInput: UITextField!
     @IBOutlet weak var TableView: UITableView!
     
-    var Players: [Player] = []
+    var _Players: [Player] = []
+    var _League = League(givenTitle: "Temp_League")
     
     
     override func viewDidLoad() {
@@ -26,21 +27,21 @@ class PlayerListScreen: UIViewController {
     
     @IBAction func AddPlayer(_ sender: Any) {
         let player = Player(givenName: NameInput.text ?? "no_name", givenAge: Int(AgeInput.text ?? "0") ?? 0, givenSkill: Double(SkillInput.text ?? "0.0") ?? 0.0) //Takes input fields to create a new player and adds to the array
-        self.Players.append(player)
+        self._Players.append(player)
         
         TableView.beginUpdates()
-        TableView.insertRows(at: [IndexPath(row: self.Players.count - 1, section: 0)], with: .automatic) /// animate the insertion
+        TableView.insertRows(at: [IndexPath(row: self._Players.count - 1, section: 0)], with: .automatic) /// animate the insertion
         TableView.endUpdates()
     }
 }
 
 extension PlayerListScreen: UITableViewDataSource, UITableViewDelegate{ //Deciding the amount of rows
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.Players.count
+        return self._Players.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let player = self.Players[indexPath.row]
+        let player = self._Players[indexPath.row]
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "PlayerCell") as! PlayerCell
         
