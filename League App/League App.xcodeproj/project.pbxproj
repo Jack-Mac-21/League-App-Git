@@ -21,6 +21,7 @@
 		447686CA276ED1FD004A50E1 /* League.swift in Sources */ = {isa = PBXBuildFile; fileRef = 447686C9276ED1FD004A50E1 /* League.swift */; };
 		448827F0276F03CA0067FF87 /* PlayerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448827EF276F03CA0067FF87 /* PlayerCell.swift */; };
 		448827F2276F05B20067FF87 /* PlayerListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 448827F1276F05B20067FF87 /* PlayerListScreen.swift */; };
+		4498BB022778F5E4003BFC14 /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4498BB012778F5E4003BFC14 /* Match.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		447686C9276ED1FD004A50E1 /* League.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = League.swift; sourceTree = "<group>"; };
 		448827EF276F03CA0067FF87 /* PlayerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCell.swift; sourceTree = "<group>"; };
 		448827F1276F05B20067FF87 /* PlayerListScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerListScreen.swift; sourceTree = "<group>"; };
+		4498BB012778F5E4003BFC14 /* Match.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Match.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +123,7 @@
 				448827EF276F03CA0067FF87 /* PlayerCell.swift */,
 				4429687C27761D2800663015 /* LeagueCell.swift */,
 				447686C7276EB4BC004A50E1 /* Player.swift */,
+				4498BB012778F5E4003BFC14 /* Match.swift */,
 				447686C9276ED1FD004A50E1 /* League.swift */,
 				44768697276EB449004A50E1 /* AppDelegate.swift */,
 				4476869D276EB449004A50E1 /* Main.storyboard */,
@@ -283,6 +286,7 @@
 			files = (
 				447686C8276EB4BC004A50E1 /* Player.swift in Sources */,
 				4476869C276EB449004A50E1 /* LeagueListScreen.swift in Sources */,
+				4498BB022778F5E4003BFC14 /* Match.swift in Sources */,
 				448827F2276F05B20067FF87 /* PlayerListScreen.swift in Sources */,
 				448827F0276F03CA0067FF87 /* PlayerCell.swift in Sources */,
 				44768698276EB449004A50E1 /* AppDelegate.swift in Sources */,

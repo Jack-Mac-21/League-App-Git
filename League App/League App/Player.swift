@@ -13,6 +13,7 @@ class Player{
     var Age: Int;
     var SkillLevel: Double;
     var Matches = [String: [[Int]]]();
+    var record = [Int]();
     
     init(givenName: String, givenAge: Int, givenSkill: Double){
         self.Name = givenName;
