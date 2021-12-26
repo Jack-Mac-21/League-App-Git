@@ -9,15 +9,23 @@ import UIKit
 
 class PlayerListScreen: UIViewController {
     
+    @IBOutlet weak var LeagueName: UILabel!
     @IBOutlet weak var NameInput: UITextField!
     @IBOutlet weak var SkillInput: UITextField!
     @IBOutlet weak var AgeInput: UITextField!
     @IBOutlet weak var TableView: UITableView!
     
     var _Players: [Player] = []
-    var _League = League(givenTitle: "Temp_League")
+    var _League: League?
     
-    
+    //Runs right before the viewcontroller appears
+    //Passes in the given league date to display at the top
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let givenLeague = _League{
+            LeagueName.text = givenLeague.Title
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         TableView.delegate = self
@@ -25,6 +33,7 @@ class PlayerListScreen: UIViewController {
 
     }
     
+    //When the user presses add player
     @IBAction func AddPlayer(_ sender: Any) {
         let player = Player(givenName: NameInput.text ?? "no_name", givenAge: Int(AgeInput.text ?? "0") ?? 0, givenSkill: Double(SkillInput.text ?? "0.0") ?? 0.0) //Takes input fields to create a new player and adds to the array
         self._Players.append(player)

@@ -23,7 +23,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Dc-Mc-eHl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1275" y="93"/>
+            <point key="canvasLocation" x="-1583" y="68"/>
         </scene>
         <!--League List Screen-->
         <scene sceneID="IU7-wi-Jnr">
@@ -70,6 +70,7 @@
                                         <connections>
                                             <outlet property="Count" destination="fKU-9X-qzg" id="HRH-e8-R41"/>
                                             <outlet property="Label" destination="Agz-La-yxY" id="ygw-Mz-OR5"/>
+                                            <segue destination="BYZ-38-t0r" kind="show" identifier="LeaguesToLeague" id="GfD-0j-Rgd"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -77,7 +78,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="League App" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="emj-WW-Ij8">
                                 <rect key="frame" x="52" y="73" width="311" height="85"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="49"/>
+                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="49"/>
                                 <color key="textColor" name="AccentColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -131,7 +132,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XZh-Qt-9IS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-652.17391304347836" y="91.741071428571431"/>
+            <point key="canvasLocation" x="-733" y="110"/>
         </scene>
         <!--Player List Screen-->
         <scene sceneID="tne-QT-ifu">
@@ -189,13 +190,6 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="LEAGUE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QJp-Ie-gfx">
-                                <rect key="frame" x="52" y="44" width="311" height="86"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="49"/>
-                                <color key="textColor" name="AccentColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="NAME" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dEI-WQ-5Up">
                                 <rect key="frame" x="40" y="287" width="51" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -250,12 +244,21 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="LEAGUE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QJp-Ie-gfx">
+                                <rect key="frame" x="52" y="109" width="311" height="86"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="49"/>
+                                <color key="textColor" name="AccentColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="3Za-G8-Uub"/>
                         <color key="backgroundColor" systemColor="secondaryLabelColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="edK-wu-2i1"/>
                     <connections>
                         <outlet property="AgeInput" destination="YIH-ec-TEY" id="xlL-qp-y9z"/>
+                        <outlet property="LeagueName" destination="QJp-Ie-gfx" id="No3-t3-07l"/>
                         <outlet property="NameInput" destination="ud3-BG-fJX" id="Aks-aI-ssg"/>
                         <outlet property="SkillInput" destination="BIN-oT-QhS" id="r9r-2t-tmB"/>
                         <outlet property="TableView" destination="kan-JY-dCB" id="dLY-gO-pUR"/>

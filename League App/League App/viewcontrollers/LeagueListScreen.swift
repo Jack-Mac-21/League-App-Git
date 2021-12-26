@@ -34,6 +34,16 @@ class LeagueListScreen: UIViewController {
         
         
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "LeaguesToLeague"{
+            let indexPath = LeagueTableView.indexPathForSelectedRow!
+            let destVC = segue.destination as! PlayerListScreen
+            
+            destVC._League = self.leagues[indexPath.row]
+        }
+    }
+    
 }
 
 extension LeagueListScreen: UITableViewDataSource, UITableViewDelegate{ //Deciding the amount of rows
@@ -50,8 +60,6 @@ extension LeagueListScreen: UITableViewDataSource, UITableViewDelegate{ //Decidi
         
         return cell
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        <#code#>
-    }
 }
+
+//https://www.youtube.com/watch?v=dsXzy9sDWOQ
