@@ -71,6 +71,7 @@ class PlayerListScreen: UIViewController, DataDelegatePlayerListScreen {
             let playerIndex = TableView.indexPathForSelectedRow!
             destVC.givenName = self._PlayerNameList[playerIndex.row]
             destVC.currPlayer = self._League.PlayersDict[self._PlayerNameList[playerIndex.row]] //gets the current player
+            destVC.dataDelegate = self
         }
     }
 }

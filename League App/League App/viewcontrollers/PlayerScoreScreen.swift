@@ -19,7 +19,7 @@ class PlayerScoreScreen: UIViewController, DataPlayerScore {
     var givenName: String?
     var givenHoles: [Hole]?
     var dataDelegate: DataDelegatePlayerListScreen?
-    var currPlayer: Player?
+    var currPlayer: Player! //Player needs to be set or crash
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,12 +33,21 @@ class PlayerScoreScreen: UIViewController, DataPlayerScore {
     
     func UpdatePar(index: Int, value: Int) {
         currPlayer?.ParNums[index] = value
-        print(currPlayer?.ParNums)
     }
     
     func UpdateScore(index: Int, value: Int){
         currPlayer?.Scores[index] = value
-        print(currPlayer?.Scores)
+    }
+    
+    //Supposed to call when the view will move
+    //ie when the back button is pressed
+    //for updating the player values
+    func willMove(toParent parent: PlayerScoreScreen?) {
+        super.willMove(toParent: parent)
+
+        if parent == nil {
+            dataDelegate?.updatePlayer(player: currPlayer)
+        }
     }
 
 }
@@ -51,8 +60,13 @@ extension PlayerScoreScreen: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        let score = currPlayer.Scores[indexPath.row]
+        let par = currPlayer.ParNums[indexPath.row]
+        
         let tempHole = Hole()
         
+        tempHole.Score = score
+        tempHole.ParNumber = par
         tempHole.HoleNumber = indexPath.row + 1
         
         print(tempHole.HoleNumber)
@@ -61,6 +75,7 @@ extension PlayerScoreScreen: UITableViewDelegate, UITableViewDataSource {
         
         cell.setHole(hole: tempHole)
         cell.scoreDelegate = self
+        
         return cell
     
     }
