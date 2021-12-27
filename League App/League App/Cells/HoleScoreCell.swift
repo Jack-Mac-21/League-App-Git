@@ -18,12 +18,22 @@ class HoleScoreCell: UITableViewCell {
     
     var givenHole = Hole()
     
+    @IBAction func stepperParValueChanged(_ sender: UIStepper){
+        ParLabel.text = Int(sender.value).description
+    }
+    
+    @IBAction func stepperScoreValueChanged(_ sender: UIStepper) {
+        ScoreLabel.text = Int(sender.value).description
+    }
+    
+    
     
     func setHole(hole: Hole){
-        HoleNum.text = hole.HoleNumber.description
+        HoleNum.text = "Hole #" + (hole.HoleNumber.description)
         ScoreLabel.text = hole.Score.description
         ParLabel.text = hole.ParNumber.description
         givenHole = hole
     }
+    
 
 }
