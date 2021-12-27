@@ -16,6 +16,7 @@ class PlayerListScreen: UIViewController {
     @IBOutlet weak var TableView: UITableView!
     
     var _Players: [Player] = []
+    var _PlayerNameList: [String] = []
     var _League: League! //Forcing this to be a league, could lead to a crash
     var _Delegate: DataDelegate?
     
@@ -38,19 +39,33 @@ class PlayerListScreen: UIViewController {
     //When the user presses add player
     @IBAction func AddPlayer(_ sender: Any) {
         let _player = Player(givenName: NameInput.text ?? "no_name", givenAge: Int(AgeInput.text ?? "0") ?? 0, givenSkill: Double(SkillInput.text ?? "0.0") ?? 0.0) //Takes input fields to create a new player and adds to the array
-        self._Players.append(_player)
-        self._League?.PlayerList.append(_player)
-        self._League?.PlayersDict[_player.Name] = _player
-        
-        _Delegate?.updateLeague(league: self._League, player: _player)
-        
-        TableView.beginUpdates()
-        TableView.insertRows(at: [IndexPath(row: self._Players.count - 1, section: 0)], with: .automatic) /// animate the insertion
-        TableView.endUpdates()
+        if self._PlayerNameList.contains(_player.Name) == false{
+            self._PlayerNameList.append(_player.Name)
+            self._Players.append(_player)
+            self._League?.PlayerList.append(_player)
+            self._League?.PlayersDict[_player.Name] = _player
+            
+            _Delegate?.updateLeague(league: self._League, player: _player)
+            
+            TableView.beginUpdates()
+            TableView.insertRows(at: [IndexPath(row: self._Players.count - 1, section: 0)], with: .automatic) /// animate the insertion
+            TableView.endUpdates()
+        }
+
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "LeagueToPlayer"{
+            let destVC = segue.destination as! PlayerScoreScreen
+            
+            let playerIndex = TableView.indexPathForSelectedRow!
+            destVC.givenName = self._PlayerNameList[playerIndex.row]
+        }
     }
 }
 
 extension PlayerListScreen: UITableViewDataSource, UITableViewDelegate{ //Deciding the amount of rows
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self._Players.count
     }

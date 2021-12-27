@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		4429687D27761D2800663015 /* LeagueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4429687C27761D2800663015 /* LeagueCell.swift */; };
+		444D9B5E27794B1500446E88 /* PlayerScoreScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D9B5D27794B1500446E88 /* PlayerScoreScreen.swift */; };
+		444D9B6127794C5E00446E88 /* HoleScoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D9B6027794C5E00446E88 /* HoleScoreCell.swift */; };
+		444D9B6427794CD700446E88 /* Hole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 444D9B6327794CD700446E88 /* Hole.swift */; };
 		44768698276EB449004A50E1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44768697276EB449004A50E1 /* AppDelegate.swift */; };
 		4476869A276EB449004A50E1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44768699276EB449004A50E1 /* SceneDelegate.swift */; };
 		4476869C276EB449004A50E1 /* LeagueListScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4476869B276EB449004A50E1 /* LeagueListScreen.swift */; };
@@ -43,6 +46,9 @@
 
 /* Begin PBXFileReference section */
 		4429687C27761D2800663015 /* LeagueCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeagueCell.swift; sourceTree = "<group>"; };
+		444D9B5D27794B1500446E88 /* PlayerScoreScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerScoreScreen.swift; sourceTree = "<group>"; };
+		444D9B6027794C5E00446E88 /* HoleScoreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoleScoreCell.swift; sourceTree = "<group>"; };
+		444D9B6327794CD700446E88 /* Hole.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hole.swift; sourceTree = "<group>"; };
 		44768694276EB449004A50E1 /* League App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "League App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		44768697276EB449004A50E1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		44768699276EB449004A50E1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -93,8 +99,30 @@
 			children = (
 				4476869B276EB449004A50E1 /* LeagueListScreen.swift */,
 				448827F1276F05B20067FF87 /* PlayerListScreen.swift */,
+				444D9B5D27794B1500446E88 /* PlayerScoreScreen.swift */,
 			);
 			path = viewcontrollers;
+			sourceTree = "<group>";
+		};
+		444D9B5F27794C1A00446E88 /* ObjectClasses */ = {
+			isa = PBXGroup;
+			children = (
+				447686C7276EB4BC004A50E1 /* Player.swift */,
+				4498BB012778F5E4003BFC14 /* Match.swift */,
+				447686C9276ED1FD004A50E1 /* League.swift */,
+				444D9B6327794CD700446E88 /* Hole.swift */,
+			);
+			path = ObjectClasses;
+			sourceTree = "<group>";
+		};
+		444D9B6227794C7400446E88 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				444D9B6027794C5E00446E88 /* HoleScoreCell.swift */,
+				448827EF276F03CA0067FF87 /* PlayerCell.swift */,
+				4429687C27761D2800663015 /* LeagueCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		4476868B276EB449004A50E1 = {
@@ -120,11 +148,8 @@
 		44768696276EB449004A50E1 /* League App */ = {
 			isa = PBXGroup;
 			children = (
-				448827EF276F03CA0067FF87 /* PlayerCell.swift */,
-				4429687C27761D2800663015 /* LeagueCell.swift */,
-				447686C7276EB4BC004A50E1 /* Player.swift */,
-				4498BB012778F5E4003BFC14 /* Match.swift */,
-				447686C9276ED1FD004A50E1 /* League.swift */,
+				444D9B6227794C7400446E88 /* Cells */,
+				444D9B5F27794C1A00446E88 /* ObjectClasses */,
 				44768697276EB449004A50E1 /* AppDelegate.swift */,
 				4476869D276EB449004A50E1 /* Main.storyboard */,
 				4429687A2776188200663015 /* viewcontrollers */,
@@ -285,6 +310,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				447686C8276EB4BC004A50E1 /* Player.swift in Sources */,
+				444D9B6427794CD700446E88 /* Hole.swift in Sources */,
 				4476869C276EB449004A50E1 /* LeagueListScreen.swift in Sources */,
 				4498BB022778F5E4003BFC14 /* Match.swift in Sources */,
 				448827F2276F05B20067FF87 /* PlayerListScreen.swift in Sources */,
@@ -293,6 +319,8 @@
 				447686CA276ED1FD004A50E1 /* League.swift in Sources */,
 				4429687D27761D2800663015 /* LeagueCell.swift in Sources */,
 				4476869A276EB449004A50E1 /* SceneDelegate.swift in Sources */,
+				444D9B5E27794B1500446E88 /* PlayerScoreScreen.swift in Sources */,
+				444D9B6127794C5E00446E88 /* HoleScoreCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

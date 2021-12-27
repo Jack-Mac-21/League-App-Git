@@ -33,10 +33,12 @@ class LeagueListScreen: UIViewController, DataDelegate {
         // Do any additional setup after loading the view.
     }
     
+    //reloads the table view cell with new data
     override func viewWillAppear(_ animated: Bool) {
         LeagueTableView.reloadData()
     }
     
+    //Adds league from input fields
     @IBAction func AddLeague(_ sender: Any) {
         let tempLeague = League(givenTitle: LeagueNameInput.text ?? "error")
         leagues.append(tempLeague)
@@ -53,7 +55,6 @@ class LeagueListScreen: UIViewController, DataDelegate {
     //Need to update to update the correspounding league with the new player
     func AddPlayerToLeague(givenLeague: League, givenPlayer: Player){
         LeagueDict[givenLeague.Title]?.PlayersDict[givenPlayer.Name] = givenPlayer //Adds a given player to the given league
-        
         
     }
     
