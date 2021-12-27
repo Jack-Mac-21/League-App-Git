@@ -75,6 +75,19 @@ class PlayerListScreen: UIViewController, DataDelegatePlayerListScreen {
             destVC.givenName = self._PlayerNameList[playerIndex.row]
             destVC.currPlayer = self._League.PlayersDict[self._PlayerNameList[playerIndex.row]] //gets the current player
             destVC.dataDelegate = self
+            
+            //Initializing total to prevent a crash
+            var totalPar = 0
+            var totalScore = 0
+            for num in destVC.currPlayer.ParNums{
+                totalPar += num
+            }
+            for num in destVC.currPlayer.Scores{
+                totalScore += num
+            }
+            destVC.totalScore = totalScore
+            destVC.totalPar = totalPar
+            
         }
     }
 }

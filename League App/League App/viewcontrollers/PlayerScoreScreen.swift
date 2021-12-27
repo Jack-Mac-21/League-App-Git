@@ -15,11 +15,15 @@ protocol DataPlayerScore{
 class PlayerScoreScreen: UIViewController, DataPlayerScore {
     @IBOutlet weak var ScoreTableView: UITableView!
     @IBOutlet weak var PlayerName: UILabel!
+    @IBOutlet weak var GrossScoreText: UILabel!
+    @IBOutlet weak var NetScoreText: UILabel!
     
     var givenName: String?
     var givenHoles: [Hole]?
     var dataDelegate: DataDelegatePlayerListScreen?
     var currPlayer: Player! //Player needs to be set or crash
+    var totalPar: Int!
+    var totalScore: Int!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,14 +33,31 @@ class PlayerScoreScreen: UIViewController, DataPlayerScore {
     
     override func viewWillAppear(_ animated: Bool) {
         PlayerName.text = givenName
+        updateCalculatedScores()
     }
     
     func UpdatePar(index: Int, value: Int) {
         currPlayer?.ParNums[index] = value
+        var total = 0
+        for num in currPlayer.ParNums{
+            total += num
+        }
+        totalPar = total
+        updateCalculatedScores()
     }
     
     func UpdateScore(index: Int, value: Int){
         currPlayer?.Scores[index] = value
+        var total = 0
+        for num in currPlayer.Scores{
+            total += num
+        }
+        totalScore = total
+        updateCalculatedScores()
+    }
+    func updateCalculatedScores(){
+        GrossScoreText.text = "Gross: " + totalScore.description
+        NetScoreText.text = "Net: " + (totalScore - totalPar).description
     }
     
     //Supposed to call when the view will move
