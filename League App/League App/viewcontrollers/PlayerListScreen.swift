@@ -37,6 +37,9 @@ class PlayerListScreen: UIViewController, DataDelegatePlayerListScreen {
         TableView.delegate = self
         TableView.dataSource = self
         self._Players = self._League.PlayerList
+        for player in _Players { //To reinstate the name list for indexing
+            self._PlayerNameList.append(player.Name)
+        }
 
     }
     
