@@ -51,7 +51,7 @@ class PlayerListScreen: UIViewController, DataDelegatePlayerListScreen {
     
     //When the user presses add player
     @IBAction func AddPlayer(_ sender: Any) {
-        let _player = Player(givenName: NameInput.text ?? "no_name", givenAge: Int(AgeInput.text ?? "0") ?? 0, givenSkill: Double(SkillInput.text ?? "0.0") ?? 0.0) //Takes input fields to create a new player and adds to the array
+        let _player = Player(givenName: NameInput.text ?? "no_name") //Takes input fields to create a new player and adds to the array
         if self._PlayerNameList.contains(_player.Name) == false{
             self._PlayerNameList.append(_player.Name)
             self._Players.append(_player)
