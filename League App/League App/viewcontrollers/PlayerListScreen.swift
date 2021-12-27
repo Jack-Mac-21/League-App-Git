@@ -7,7 +7,11 @@
 
 import UIKit
 
-class PlayerListScreen: UIViewController {
+protocol DataDelegatePlayerListScreen{
+    func updatePlayer(player: Player) //Updates the score info for the given player 
+}
+
+class PlayerListScreen: UIViewController, DataDelegatePlayerListScreen {
     
     @IBOutlet weak var LeagueName: UILabel!
     @IBOutlet weak var NameInput: UITextField!
@@ -36,6 +40,12 @@ class PlayerListScreen: UIViewController {
 
     }
     
+    //Updates the player in the dictionary with the new player
+    //from the ScoreScreen, used to save a players score
+    func updatePlayer(player: Player){
+        _League.PlayersDict[player.Name] = player
+    }
+    
     //When the user presses add player
     @IBAction func AddPlayer(_ sender: Any) {
         let _player = Player(givenName: NameInput.text ?? "no_name", givenAge: Int(AgeInput.text ?? "0") ?? 0, givenSkill: Double(SkillInput.text ?? "0.0") ?? 0.0) //Takes input fields to create a new player and adds to the array
@@ -60,6 +70,7 @@ class PlayerListScreen: UIViewController {
             
             let playerIndex = TableView.indexPathForSelectedRow!
             destVC.givenName = self._PlayerNameList[playerIndex.row]
+            destVC.currPlayer = self._League.PlayersDict[self._PlayerNameList[playerIndex.row]] //gets the current player
         }
     }
 }

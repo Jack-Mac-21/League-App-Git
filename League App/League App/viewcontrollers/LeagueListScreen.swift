@@ -41,14 +41,17 @@ class LeagueListScreen: UIViewController, DataDelegate {
     //Adds league from input fields
     @IBAction func AddLeague(_ sender: Any) {
         let tempLeague = League(givenTitle: LeagueNameInput.text ?? "error")
-        leagues.append(tempLeague)
-        LeagueDict[tempLeague.Title] = tempLeague
-        
-        LeagueTableView.beginUpdates()
-        LeagueTableView.insertRows(at: [IndexPath(row: self.leagues.count - 1, section: 0)], with: .automatic) /// animate the insertion
-        LeagueTableView.endUpdates()
-        
-        LeagueNameInput.text = ""
+        if LeagueDict[tempLeague.Title] == nil{
+            leagues.append(tempLeague)
+            LeagueDict[tempLeague.Title] = tempLeague
+            
+            LeagueTableView.beginUpdates()
+            LeagueTableView.insertRows(at: [IndexPath(row: self.leagues.count - 1, section: 0)], with: .automatic) /// animate the insertion
+            LeagueTableView.endUpdates()
+            
+            LeagueNameInput.text = ""
+        }
+
     }
     
     //Function testing if we are adding player from the player list screen

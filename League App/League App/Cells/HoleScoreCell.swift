@@ -16,14 +16,20 @@ class HoleScoreCell: UITableViewCell {
     @IBOutlet weak var ParStepper: UIStepper!
     @IBOutlet weak var ScoreStepper: UIStepper!
     
+    var scoreDelegate: DataPlayerScore?
+    
     var givenHole = Hole()
     
+    //Uses the delegate to update stepper value and player value
+    // in the player screen view controller
     @IBAction func stepperParValueChanged(_ sender: UIStepper){
         ParLabel.text = Int(sender.value).description
+        scoreDelegate?.UpdatePar(index: givenHole.HoleNumber - 1, value: Int(sender.value))
     }
     
     @IBAction func stepperScoreValueChanged(_ sender: UIStepper) {
         ScoreLabel.text = Int(sender.value).description
+        scoreDelegate?.UpdateScore(index: givenHole.HoleNumber - 1, value: Int(sender.value))
     }
     
     

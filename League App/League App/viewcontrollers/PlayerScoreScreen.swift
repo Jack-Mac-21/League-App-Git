@@ -7,11 +7,19 @@
 
 import UIKit
 
-class PlayerScoreScreen: UIViewController {
+protocol DataPlayerScore{
+    func UpdatePar(index: Int, value: Int) //Index to know what hole to index for and an updated value
+    func UpdateScore(index: Int, value: Int)
+}
+
+class PlayerScoreScreen: UIViewController, DataPlayerScore {
     @IBOutlet weak var ScoreTableView: UITableView!
     @IBOutlet weak var PlayerName: UILabel!
     
     var givenName: String?
+    var givenHoles: [Hole]?
+    var dataDelegate: DataDelegatePlayerListScreen?
+    var currPlayer: Player?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +29,16 @@ class PlayerScoreScreen: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         PlayerName.text = givenName
+    }
+    
+    func UpdatePar(index: Int, value: Int) {
+        currPlayer?.ParNums[index] = value
+        print(currPlayer?.ParNums)
+    }
+    
+    func UpdateScore(index: Int, value: Int){
+        currPlayer?.Scores[index] = value
+        print(currPlayer?.Scores)
     }
 
 }
@@ -42,6 +60,7 @@ extension PlayerScoreScreen: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "HoleCustomCell") as! HoleScoreCell
         
         cell.setHole(hole: tempHole)
+        cell.scoreDelegate = self
         return cell
     
     }
