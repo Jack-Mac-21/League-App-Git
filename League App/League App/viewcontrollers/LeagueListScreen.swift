@@ -19,7 +19,6 @@ class LeagueListScreen: UIViewController, DataDelegate {
     @IBOutlet weak var LeagueNameInput: UITextField!
     @IBOutlet weak var LeagueTableView: UITableView!
     
-    var leagues: [League] = []
     var LeagueDict = [String: League]()
     
     //Protocol Implementation to pass data back to this screen
@@ -48,7 +47,6 @@ class LeagueListScreen: UIViewController, DataDelegate {
     @IBAction func AddLeague(_ sender: Any) {
         let tempLeague = League(givenTitle: LeagueNameInput.text ?? "error")
         if LeagueDict[tempLeague.Title] == nil{
-            leagues.append(tempLeague)
             LeagueDict[tempLeague.Title] = tempLeague
             
             LeagueTableView.beginUpdates()
@@ -94,13 +92,6 @@ class LeagueListScreen: UIViewController, DataDelegate {
             let decodedDict = try? JSONDecoder().decode([String: League].self, from: data!)
             if decodedDict != nil {
                 LeagueDict = decodedDict!
-                for leagueName in Array(LeagueDict.keys){
-                    let leagueInDict = LeagueDict[leagueName]
-                    if leagueInDict != nil {
-                        leagues.append(leagueInDict!)
-                    }
-                   
-                }
             
             }
             else{
