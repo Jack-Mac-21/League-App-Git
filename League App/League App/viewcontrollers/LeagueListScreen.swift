@@ -10,6 +10,9 @@ import UIKit
 protocol DataDelegate{
     func updateLeague(league: League, player: Player)
 }
+protocol SaveDataDelegate{
+    func SaveCurrData()
+}
 
 class LeagueListScreen: UIViewController, DataDelegate {
     @IBOutlet weak var AddLeagueButton: UIButton!
@@ -27,6 +30,7 @@ class LeagueListScreen: UIViewController, DataDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.loadLeague()
         LeagueTableView.delegate = self
         LeagueTableView.dataSource = self
         
@@ -39,6 +43,7 @@ class LeagueListScreen: UIViewController, DataDelegate {
     }
     
     //Adds league from input fields
+    //When the user hits the Add League UIButton
     @IBAction func AddLeague(_ sender: Any) {
         let tempLeague = League(givenTitle: LeagueNameInput.text ?? "error")
         if LeagueDict[tempLeague.Title] == nil{
@@ -68,8 +73,19 @@ class LeagueListScreen: UIViewController, DataDelegate {
             let destVC = segue.destination as! PlayerListScreen
             
             destVC._League = self.leagues[indexPath.row]
-            destVC._Delegate = self
+            destVC._DelegateForLeague = self
         }
+    }
+    
+    //Saves the data when the view disappears
+    override func viewWillDisappear(_ animated: Bool) {
+        let encodedData = try? JSONEncoder().encode(LeagueDict)
+        UserDefaults.standard.set(encodedData, forKey: "GetLeagueDict")
+        print("Called view will disappear")
+    }
+    
+    //Loads the league if it is there
+    func loadLeague(){
     }
     
 }

@@ -9,6 +9,9 @@ import UIKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    var LeagueDict: [String: League]?
+    var SaveDelegate: SaveDataDelegate?
 
 
 

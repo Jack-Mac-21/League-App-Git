@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 protocol DataDelegatePlayerListScreen{
     func updatePlayer(player: Player) //Updates the score info for the given player 
 }
@@ -22,7 +23,8 @@ class PlayerListScreen: UIViewController, DataDelegatePlayerListScreen {
     var _Players: [Player] = []
     var _PlayerNameList: [String] = []
     var _League: League! //Forcing this to be a league, could lead to a crash
-    var _Delegate: DataDelegate?
+    var _DelegateForLeague: DataDelegate?
+    var _AppleDelegate: AppDelegate?
     
     //Runs right before the viewcontroller appears
     //Passes in the given league date to display at the top
@@ -58,7 +60,7 @@ class PlayerListScreen: UIViewController, DataDelegatePlayerListScreen {
             self._League?.PlayerList.append(_player)
             self._League?.PlayersDict[_player.Name] = _player
             
-            _Delegate?.updateLeague(league: self._League, player: _player)
+            _DelegateForLeague?.updateLeague(league: self._League, player: _player)
             
             TableView.beginUpdates()
             TableView.insertRows(at: [IndexPath(row: self._Players.count - 1, section: 0)], with: .automatic) /// animate the insertion

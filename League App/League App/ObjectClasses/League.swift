@@ -7,13 +7,21 @@
 
 import Foundation
 
-class League{
+class League: Codable{
     var PlayersDict = [String: Player]();
     var PlayerList: [Player] = []
     var Title = "New League"; //title for a league
     
     init(givenTitle: String){
         self.Title = givenTitle
+    }
+    
+    required init(from decoder: Decoder) throws {
+        
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        
     }
     
     func addPlayer(player: Player){
