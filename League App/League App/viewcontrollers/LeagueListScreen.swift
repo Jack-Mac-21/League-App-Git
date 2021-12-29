@@ -52,7 +52,7 @@ class LeagueListScreen: UIViewController, DataDelegate {
             LeagueDict[tempLeague.Title] = tempLeague
             
             LeagueTableView.beginUpdates()
-            LeagueTableView.insertRows(at: [IndexPath(row: self.leagues.count - 1, section: 0)], with: .automatic) /// animate the insertion
+            LeagueTableView.insertRows(at: [IndexPath(row: self.LeagueDict.count - 1, section: 0)], with: .automatic) /// animate the insertion
             LeagueTableView.endUpdates()
             
             LeagueNameInput.text = ""
@@ -71,9 +71,11 @@ class LeagueListScreen: UIViewController, DataDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "LeaguesToLeague"{
             let indexPath = LeagueTableView.indexPathForSelectedRow!
+            let leagueNames = Array(self.LeagueDict.keys)
+            let currLeagueName = leagueNames[indexPath.row]
             let destVC = segue.destination as! PlayerListScreen
             
-            destVC._League = self.leagues[indexPath.row]
+            destVC._League = self.LeagueDict[currLeagueName]
             destVC._DelegateForLeague = self
         }
     }
@@ -113,7 +115,7 @@ class LeagueListScreen: UIViewController, DataDelegate {
 
 extension LeagueListScreen: UITableViewDataSource, UITableViewDelegate{ //Deciding the amount of rows
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.leagues.count
+        return self.LeagueDict.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
