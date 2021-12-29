@@ -65,6 +65,7 @@ class PlayerListScreen: UIViewController, DataDelegatePlayerListScreen {
             TableView.beginUpdates()
             TableView.insertRows(at: [IndexPath(row: self._Players.count - 1, section: 0)], with: .automatic) /// animate the insertion
             TableView.endUpdates()
+            NameInput.text = ""
         }
 
     }
