@@ -8,11 +8,8 @@
 import Foundation
 import UIKit
 
-class Player{
+class Player: Codable{
     var Name: String;
-    var Age: Int?;
-    var SkillLevel: Double?;
-    var Matches = [String: [[Int]]]();
     var Scores: [Int];
     var ParNums: [Int];
     var OverParScore: Int?
@@ -22,6 +19,28 @@ class Player{
         self.Name = givenName;
         self.Scores = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
         self.ParNums = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+    }
+    
+    enum CodingKeys: String, CodingKey{
+        case name = "name"
+        case scores = "scores"
+        case parNums = "ParNums"
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        try container.encode(Name, forKey: CodingKeys.name)
+        try container.encode(Scores, forKey: CodingKeys.scores)
+        try container.encode(ParNums, forKey: CodingKeys.parNums)
+    }
+    
+    required init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        Name = try values.decode(String.self, forKey: .name)
+        Scores = try values.decode([Int].self, forKey: .scores)
+        ParNums = try values.decode([Int].self, forKey: .parNums)
+        calcScores()
     }
     
     //Calculates over par score and gross score from the current scores and

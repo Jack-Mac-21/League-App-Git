@@ -30,7 +30,8 @@ class LeagueListScreen: UIViewController, DataDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.loadLeague()
+        self.loadLeague() //Initializes the variables
+        LeagueTableView.reloadData()
         LeagueTableView.delegate = self
         LeagueTableView.dataSource = self
         
@@ -86,8 +87,28 @@ class LeagueListScreen: UIViewController, DataDelegate {
     
     //Loads the league if it is there
     func loadLeague(){
+        let data = UserDefaults.standard.value(forKey: "GetLeagueDict") as? Data
+        if data != nil{
+            let decodedDict = try? JSONDecoder().decode([String: League].self, from: data!)
+            if decodedDict != nil {
+                LeagueDict = decodedDict!
+                for leagueName in Array(LeagueDict.keys){
+                    let leagueInDict = LeagueDict[leagueName]
+                    if leagueInDict != nil {
+                        leagues.append(leagueInDict!)
+                    }
+                   
+                }
+            
+            }
+            else{
+                print("DecodedDict was decoded as nil")
+            }
+        }
+        else{
+            print("data value was nil")
+        }
     }
-    
 }
 
 extension LeagueListScreen: UITableViewDataSource, UITableViewDelegate{ //Deciding the amount of rows
