@@ -55,6 +55,9 @@ class LeagueListScreen: UIViewController, DataDelegate {
             
             LeagueNameInput.text = ""
         }
+        else{
+            UserDefaults.standard.set(nil, forKey: "GetLeagueDict")
+        }
 
     }
     
