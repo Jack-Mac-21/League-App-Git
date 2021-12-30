@@ -17,6 +17,7 @@ class PlayerScoreScreen: UIViewController, DataPlayerScore {
     @IBOutlet weak var PlayerName: UILabel!
     @IBOutlet weak var GrossScoreText: UILabel!
     @IBOutlet weak var NetScoreText: UILabel!
+    @IBOutlet weak var PlayersLeagueLabel: UILabel!
     
     var givenName: String?
     var givenHoles: [Hole]?
@@ -24,6 +25,7 @@ class PlayerScoreScreen: UIViewController, DataPlayerScore {
     var currPlayer: Player! //Player needs to be set or crash
     var totalPar: Int!
     var totalScore: Int!
+    var givenLeague: League?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +35,9 @@ class PlayerScoreScreen: UIViewController, DataPlayerScore {
     
     override func viewWillAppear(_ animated: Bool) {
         PlayerName.text = givenName
+        PlayersLeagueLabel.text = "League: " + givenLeague!.Title
         updateCalculatedScores()
+        
     }
     
     func UpdatePar(index: Int, value: Int) {

@@ -17,6 +17,10 @@ class PlayerCell: UITableViewCell, DataDelegatePlayerListScreen{
     
     func setPlayer(player: Player){
         Name.text = player.Name
+        player.calcScores()
+        GrossLabel.text = player.GrossScore?.description
+        OverParLabel.text = player.OverParScore?.description
+        
         
     }
     

@@ -32,12 +32,12 @@ class HoleScoreCell: UITableViewCell {
         scoreDelegate?.UpdateScore(index: givenHole.HoleNumber - 1, value: Int(sender.value))
     }
     
-    
-    
     func setHole(hole: Hole){
         HoleNum.text = "Hole #" + (hole.HoleNumber.description)
         ScoreLabel.text = hole.Score.description
         ParLabel.text = hole.ParNumber.description
+        ParStepper.value = Double(hole.ParNumber)
+        ScoreStepper.value = Double(hole.Score)
         givenHole = hole
     }
     

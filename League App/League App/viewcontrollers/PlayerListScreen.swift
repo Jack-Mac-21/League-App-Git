@@ -16,15 +16,12 @@ class PlayerListScreen: UIViewController, DataDelegatePlayerListScreen {
     
     @IBOutlet weak var LeagueName: UILabel!
     @IBOutlet weak var NameInput: UITextField!
-    @IBOutlet weak var SkillInput: UITextField!
-    @IBOutlet weak var AgeInput: UITextField!
     @IBOutlet weak var TableView: UITableView!
     
     var _Players: [Player] = []
     var _PlayerNameList: [String] = []
     var _League: League! //Forcing this to be a league, could lead to a crash
     var _DelegateForLeague: DataDelegate?
-    var _AppleDelegate: AppDelegate?
     
     //Runs right before the viewcontroller appears
     //Passes in the given league date to display at the top
@@ -33,6 +30,7 @@ class PlayerListScreen: UIViewController, DataDelegatePlayerListScreen {
         if let givenLeague = _League{
             LeagueName.text = givenLeague.Title
         }
+        TableView.reloadData()
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +47,7 @@ class PlayerListScreen: UIViewController, DataDelegatePlayerListScreen {
     //from the ScoreScreen, used to save a players score
     func updatePlayer(player: Player){
         _League.PlayersDict[player.Name] = player
+        TableView.reloadData()
     }
     
     //When the user presses add player
@@ -90,6 +89,7 @@ class PlayerListScreen: UIViewController, DataDelegatePlayerListScreen {
             }
             destVC.totalScore = totalScore
             destVC.totalPar = totalPar
+            destVC.givenLeague = _League
             
         }
     }
@@ -98,15 +98,17 @@ class PlayerListScreen: UIViewController, DataDelegatePlayerListScreen {
 extension PlayerListScreen: UITableViewDataSource, UITableViewDelegate{ //Deciding the amount of rows
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self._Players.count
+        return self._League.PlayersDict.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let player = self._Players[indexPath.row]
+        let players = Array(self._League.PlayersDict.keys)
+        
+        let playerName = players[indexPath.row]
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "PlayerCell") as! PlayerCell
         
-        cell.setPlayer(player: player) //Specifiying the parameters in the cell
+        cell.setPlayer(player: _League.PlayersDict[playerName]!) //Specifiying the parameters in the cell
         
         return cell
     }

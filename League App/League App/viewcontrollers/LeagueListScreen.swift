@@ -40,6 +40,7 @@ class LeagueListScreen: UIViewController, DataDelegate {
     //reloads the table view cell with new data
     override func viewWillAppear(_ animated: Bool) {
         LeagueTableView.reloadData()
+        saveDataLocally()
     }
     
     //Adds league from input fields
@@ -83,6 +84,10 @@ class LeagueListScreen: UIViewController, DataDelegate {
     
     //Saves the data when the view disappears
     override func viewWillDisappear(_ animated: Bool) {
+        saveDataLocally()
+    }
+    
+    func saveDataLocally(){
         let encodedData = try? JSONEncoder().encode(LeagueDict)
         UserDefaults.standard.set(encodedData, forKey: "GetLeagueDict")
         print("Called view will disappear")
