@@ -22,6 +22,7 @@ class PlayerListScreen: UIViewController, DataDelegatePlayerListScreen {
     var _PlayerNameList: [String] = []
     var _League: League! //Forcing this to be a league, could lead to a crash
     var _DelegateForLeague: DataDelegate?
+    var addedPlayer: Player = Player(givenName: "NULL987654321")
     
     //Runs right before the viewcontroller appears
     //Passes in the given league date to display at the top
@@ -53,18 +54,23 @@ class PlayerListScreen: UIViewController, DataDelegatePlayerListScreen {
     //When the user presses add player
     @IBAction func AddPlayer(_ sender: Any) {
         let _player = Player(givenName: NameInput.text ?? "no_name") //Takes input fields to create a new player and adds to the array
-        if self._PlayerNameList.contains(_player.Name) == false{
+        if self._League.PlayersDict[_player.Name] == nil{
             self._PlayerNameList.append(_player.Name)
             self._Players.append(_player)
             self._League?.PlayerList.append(_player)
-            self._League?.PlayersDict[_player.Name] = _player
+            
             
             _DelegateForLeague?.updateLeague(league: self._League, player: _player)
             
+            self.addedPlayer = _player
             TableView.beginUpdates()
             TableView.insertRows(at: [IndexPath(row: self._Players.count - 1, section: 0)], with: .automatic) /// animate the insertion
             TableView.endUpdates()
             NameInput.text = ""
+            
+            self._League?.PlayersDict[_player.Name] = _player
+            
+            self.addedPlayer = Player(givenName: "NULL987654321")
         }
 
     }
@@ -74,13 +80,15 @@ class PlayerListScreen: UIViewController, DataDelegatePlayerListScreen {
             let destVC = segue.destination as! PlayerScoreScreen
             
             let playerIndex = TableView.indexPathForSelectedRow!
-            destVC.givenName = self._PlayerNameList[playerIndex.row]
-            destVC.currPlayer = self._League.PlayersDict[self._PlayerNameList[playerIndex.row]] //gets the current player
+            let selectedCell = TableView.cellForRow(at: playerIndex) as! PlayerCell
+            destVC.givenName = selectedCell.Name.text
+            destVC.currPlayer = _League.PlayersDict[selectedCell.Name.text ?? "Error: Not found"]//gets the current player
             destVC.dataDelegate = self
             
             //Initializing total to prevent a crash
             var totalPar = 0
             var totalScore = 0
+            
             for num in destVC.currPlayer.ParNums{
                 totalPar += num
             }
@@ -106,10 +114,21 @@ extension PlayerListScreen: UITableViewDataSource, UITableViewDelegate{ //Decidi
         
         let playerName = players[indexPath.row]
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "PlayerCell") as! PlayerCell
+        if self.addedPlayer.Name == "NULL987654321"{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "PlayerCell") as! PlayerCell
+            
+            cell.setPlayer(player: _League.PlayersDict[playerName]!) //Specifiying the parameters in the cell
+            
+            return cell
+        }
+        else{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "PlayerCell") as! PlayerCell
+            
+            cell.setPlayer(player: self.addedPlayer) //Specifiying the parameters in the cell
+            
+            return cell
+        }
         
-        cell.setPlayer(player: _League.PlayersDict[playerName]!) //Specifiying the parameters in the cell
-        
-        return cell
+
     }
 }
