@@ -18,8 +18,6 @@ class PlayerListScreen: UIViewController, DataDelegatePlayerListScreen {
     @IBOutlet weak var NameInput: UITextField!
     @IBOutlet weak var TableView: UITableView!
     
-    var _Players: [Player] = []
-    var _PlayerNameList: [String] = []
     var _League: League! //Forcing this to be a league, could lead to a crash
     var _DelegateForLeague: DataDelegate?
     var addedPlayer: Player = Player(givenName: "NULL987654321")
@@ -37,10 +35,6 @@ class PlayerListScreen: UIViewController, DataDelegatePlayerListScreen {
         super.viewDidLoad()
         TableView.delegate = self
         TableView.dataSource = self
-        self._Players = self._League.PlayerList
-        for player in _Players { //To reinstate the name list for indexing
-            self._PlayerNameList.append(player.Name)
-        }
 
     }
     
@@ -55,16 +49,11 @@ class PlayerListScreen: UIViewController, DataDelegatePlayerListScreen {
     @IBAction func AddPlayer(_ sender: Any) {
         let _player = Player(givenName: NameInput.text ?? "no_name") //Takes input fields to create a new player and adds to the array
         if self._League.PlayersDict[_player.Name] == nil{
-            self._PlayerNameList.append(_player.Name)
-            self._Players.append(_player)
-            self._League?.PlayerList.append(_player)
-            
-            
             _DelegateForLeague?.updateLeague(league: self._League, player: _player)
             
             self.addedPlayer = _player
             TableView.beginUpdates()
-            TableView.insertRows(at: [IndexPath(row: self._Players.count - 1, section: 0)], with: .automatic) /// animate the insertion
+            TableView.insertRows(at: [IndexPath(row: self._League.PlayersDict.count - 1, section: 0)], with: .automatic) /// animate the insertion
             TableView.endUpdates()
             NameInput.text = ""
             
@@ -128,7 +117,21 @@ extension PlayerListScreen: UITableViewDataSource, UITableViewDelegate{ //Decidi
             
             return cell
         }
-        
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
 
+        if editingStyle == .delete {
+            
+            let cell = tableView.cellForRow(at: indexPath) as! PlayerCell
+            
+            let playerName = cell.Name.text
+            
+            _League.PlayersDict.removeValue(forKey: playerName!)
+
+            // delete the table view row
+            tableView.deleteRows(at: [indexPath], with: .fade)
+
+        }
     }
 }
