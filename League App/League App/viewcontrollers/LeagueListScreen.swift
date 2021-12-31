@@ -20,6 +20,8 @@ class LeagueListScreen: UIViewController, DataDelegate {
     @IBOutlet weak var LeagueTableView: UITableView!
     
     var LeagueDict = [String: League]()
+    var AddedLeague = League(givenTitle: "NULL987654321")  //Just used to make sure the added league
+    //appears correctly right away
     
     //Protocol Implementation to pass data back to this screen
     func updateLeague(league: League, player: Player){
@@ -50,11 +52,14 @@ class LeagueListScreen: UIViewController, DataDelegate {
         if LeagueDict[tempLeague.Title] == nil{
             LeagueDict[tempLeague.Title] = tempLeague
             
+            self.AddedLeague = tempLeague
             LeagueTableView.beginUpdates()
             LeagueTableView.insertRows(at: [IndexPath(row: self.LeagueDict.count - 1, section: 0)], with: .automatic) /// animate the insertion
             LeagueTableView.endUpdates()
             
             LeagueNameInput.text = ""
+            
+            self.AddedLeague = League(givenTitle: "NULL987654321")
         }
         else{
             UserDefaults.standard.set(nil, forKey: "GetLeagueDict")
@@ -125,8 +130,12 @@ extension LeagueListScreen: UITableViewDataSource, UITableViewDelegate{ //Decidi
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "LeagueCell") as! LeagueCell
         
-        cell.SetLeague(league: tempLeague!) //Specifiying the parameters in the cell
-        
+        if self.AddedLeague.Title == "NULL987654321"{
+            cell.SetLeague(league: tempLeague!) //Specifiying the parameters in the cell
+        }
+        else{
+            cell.SetLeague(league: self.AddedLeague)
+        }
         return cell
     }
 }
