@@ -27,7 +27,7 @@
         <!--League List Screen-->
         <scene sceneID="IU7-wi-Jnr">
             <objects>
-                <viewController id="Stu-xF-owu" customClass="LeagueListScreen" customModule="League_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="Stu-xF-owu" customClass="LeagueListScreen" customModule="League_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LbJ-mX-1nG">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -124,7 +124,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="egp-KK-FTD">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="DD3-6w-Ep7">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="8qk-Ir-GPS">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="8qk-Ir-GPS">
                                 <rect key="frame" x="327" y="5" width="67" height="34.5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
@@ -153,7 +153,7 @@
         <!--Player List Screen-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="PlayerListScreen" customModule="League_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="BYZ-38-t0r" customClass="PlayerListScreen" customModule="League_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DdA-4l-Fph">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -274,7 +274,7 @@
         <!--Player Score Screen-->
         <scene sceneID="Qv6-po-qAK">
             <objects>
-                <viewController id="cYJ-Sf-zvI" customClass="PlayerScoreScreen" customModule="League_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="cYJ-Sf-zvI" customClass="PlayerScoreScreen" customModule="League_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0rN-lV-XJV">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
