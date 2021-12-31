@@ -77,12 +77,11 @@ class LeagueListScreen: UIViewController, DataDelegate {
     //preparing for the segue to the player list
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "LeaguesToLeague"{
-            let indexPath = LeagueTableView.indexPathForSelectedRow!
-            let leagueNames = Array(self.LeagueDict.keys)
-            let currLeagueName = leagueNames[indexPath.row]
+            let selectedLeagueCell = LeagueTableView.cellForRow(at: LeagueTableView.indexPathForSelectedRow!) as! LeagueCell
+            let currLeagueName = selectedLeagueCell.Label.text
             let destVC = segue.destination as! PlayerListScreen
             
-            destVC._League = self.LeagueDict[currLeagueName]
+            destVC._League = self.LeagueDict[currLeagueName!]
             destVC._DelegateForLeague = self
         }
     }
@@ -137,6 +136,24 @@ extension LeagueListScreen: UITableViewDataSource, UITableViewDelegate{ //Decidi
             cell.SetLeague(league: self.AddedLeague)
         }
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+
+        if editingStyle == .delete {
+            
+            let cell = tableView.cellForRow(at: indexPath) as! LeagueCell
+            
+            let leagueName = cell.Label.text
+            
+            LeagueDict.removeValue(forKey: leagueName!)
+
+            // delete the table view row
+            tableView.deleteRows(at: [indexPath], with: .fade)
+
+        } else if editingStyle == .insert {
+            // Not used in our example, but if you were adding a new row, this is where you would do it.
+        }
     }
 }
 
