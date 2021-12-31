@@ -67,6 +67,11 @@ class LeagueListScreen: UIViewController, DataDelegate {
 
     }
     
+    @IBAction func SaveButtonPressed(_ sender: Any) {
+        saveDataLocally()
+    }
+    
+    
     //Function testing if we are adding player from the player list screen
     //Need to update to update the correspounding league with the new player
     func AddPlayerToLeague(givenLeague: League, givenPlayer: Player){

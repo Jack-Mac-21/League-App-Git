@@ -62,8 +62,7 @@ class PlayerListScreen: UIViewController, DataDelegatePlayerListScreen {
             self.addedPlayer = Player(givenName: "NULL987654321")
         }
 
-    }
-    
+    }    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "LeagueToPlayer"{
             let destVC = segue.destination as! PlayerScoreScreen
