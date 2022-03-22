@@ -51,10 +51,14 @@ class Player: Codable{
         for num in self.Scores{
             ScoreTotal += num
         }
+        var i = 0 as Int;
         for num in self.ParNums{
-            ParTotal += num
+            if self.Scores[i] > 0 {
+                ParTotal += num;
+                print(self.Scores[i])
+            }
+            i += 1;
         }
-        
         self.GrossScore = ScoreTotal
         self.OverParScore = ScoreTotal - ParTotal
         

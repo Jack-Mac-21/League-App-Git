@@ -41,17 +41,24 @@ class PlayerScoreScreen: UIViewController, DataPlayerScore {
     }
     
     func UpdatePar(index: Int, value: Int) {
+        
         currPlayer?.ParNums[index] = value
-        var total = 0
+        var total = 0;
+        var i = 0 as Int;
         for num in currPlayer.ParNums{
-            total += num
+            if currPlayer.Scores[i] > 0 {
+                total += num;
+            }
+            i += 1;
         }
         totalPar = total
         updateCalculatedScores()
     }
     
     func UpdateScore(index: Int, value: Int){
-        currPlayer?.Scores[index] = value
+        currPlayer?.Scores[index] = value;
+        let parVal = currPlayer?.ParNums[index];
+        UpdatePar(index: index, value: parVal!)
         var total = 0
         for num in currPlayer.Scores{
             total += num
