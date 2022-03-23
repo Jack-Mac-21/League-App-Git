@@ -7,6 +7,9 @@
 
 import UIKit
 
+//For each cell that has the league name
+// and the amount of players in the league on the
+// right
 class LeagueCell: UITableViewCell {
     @IBOutlet weak var Label: UILabel!
     @IBOutlet weak var Count: UILabel!

@@ -8,6 +8,8 @@
 import Foundation
 import UIKit
 
+//The cell that has the name of the player and
+//there score data displayed on the right
 class PlayerCell: UITableViewCell, DataDelegatePlayerListScreen{
     @IBOutlet weak var Name: UILabel!
     @IBOutlet weak var GrossLabel: UILabel!

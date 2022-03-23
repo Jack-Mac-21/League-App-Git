@@ -12,6 +12,9 @@ protocol DataPlayerScore{
     func UpdateScore(index: Int, value: Int)
 }
 
+
+//The view for an individual player,
+//This is the screen that updates
 class PlayerScoreScreen: UIViewController, DataPlayerScore {
     @IBOutlet weak var ScoreTableView: UITableView!
     @IBOutlet weak var PlayerName: UILabel!

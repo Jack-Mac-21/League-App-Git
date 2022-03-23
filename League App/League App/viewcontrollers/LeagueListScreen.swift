@@ -14,6 +14,8 @@ protocol SaveDataDelegate{
     func SaveCurrData()
 }
 
+
+//The view that shows all of the leagues layed out in a list
 class LeagueListScreen: UIViewController, DataDelegate {
     @IBOutlet weak var AddLeagueButton: UIButton!
     @IBOutlet weak var LeagueNameInput: UITextField!

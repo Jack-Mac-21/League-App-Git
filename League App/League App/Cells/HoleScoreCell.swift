@@ -7,6 +7,8 @@
 
 import UIKit
 
+//For each individual cell in the table view for
+//updating a given players score and par on a hole
 class HoleScoreCell: UITableViewCell {
 
     @IBOutlet weak var HoleNum: UILabel!

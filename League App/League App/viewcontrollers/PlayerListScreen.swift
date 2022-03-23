@@ -12,6 +12,8 @@ protocol DataDelegatePlayerListScreen{
     func updatePlayer(player: Player) //Updates the score info for the given player 
 }
 
+//the view that shows all of the players within
+//the league layed out in a list
 class PlayerListScreen: UIViewController, DataDelegatePlayerListScreen {
     
     @IBOutlet weak var LeagueName: UILabel!
@@ -62,7 +64,8 @@ class PlayerListScreen: UIViewController, DataDelegatePlayerListScreen {
             self.addedPlayer = Player(givenName: "NULL987654321")
         }
 
-    }    
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "LeagueToPlayer"{
             let destVC = segue.destination as! PlayerScoreScreen
