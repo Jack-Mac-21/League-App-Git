@@ -32,6 +32,11 @@ class HoleScoreCell: UITableViewCell {
     @IBAction func stepperScoreValueChanged(_ sender: UIStepper) {
         ScoreLabel.text = Int(sender.value).description
         scoreDelegate?.UpdateScore(index: givenHole.HoleNumber - 1, value: Int(sender.value))
+        if sender.value > 0{
+            backgroundColor = UIColor.white
+        }else{
+            backgroundColor = UIColor.gray
+        }
     }
     
     func setHole(hole: Hole){

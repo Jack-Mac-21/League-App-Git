@@ -117,6 +117,12 @@ extension PlayerScoreScreen: UITableViewDelegate, UITableViewDataSource {
         cell.setHole(hole: tempHole)
         cell.scoreDelegate = self
         
+        if score == 0{
+            cell.backgroundColor = UIColor.gray
+        }else{
+            cell.backgroundColor = UIColor.white
+        }
+        
         return cell
     }
     
