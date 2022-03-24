@@ -71,7 +71,7 @@ class PlayerScoreScreen: UIViewController, DataPlayerScore {
     }
     func updateCalculatedScores(){
         GrossScoreText.text = "Gross: " + totalScore.description
-        NetScoreText.text = "Net: " + (totalScore - totalPar).description
+        NetScoreText.text = "Over Par: " + (totalScore - totalPar).description
     }
     
     //Supposed to call when the view will move
@@ -89,8 +89,14 @@ class PlayerScoreScreen: UIViewController, DataPlayerScore {
 
 extension PlayerScoreScreen: UITableViewDelegate, UITableViewDataSource {
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    //18 Sections for 18 holes
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 18
+    }
+    
+    //Only have 1 row because the sections will be for each hole
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -102,7 +108,7 @@ extension PlayerScoreScreen: UITableViewDelegate, UITableViewDataSource {
         
         tempHole.Score = score
         tempHole.ParNumber = par
-        tempHole.HoleNumber = indexPath.row + 1
+        tempHole.HoleNumber = indexPath.section + 1
         
         print(tempHole.HoleNumber)
         
@@ -112,8 +118,9 @@ extension PlayerScoreScreen: UITableViewDelegate, UITableViewDataSource {
         cell.scoreDelegate = self
         
         return cell
-    
     }
+    
+    
     
 }
 
