@@ -101,8 +101,8 @@ extension PlayerScoreScreen: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let score = currPlayer.Scores[indexPath.row]
-        let par = currPlayer.ParNums[indexPath.row]
+        let score = currPlayer.Scores[indexPath.section]
+        let par = currPlayer.ParNums[indexPath.section]
         
         let tempHole = Hole()
         
